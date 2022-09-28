@@ -154,22 +154,23 @@ public:
 bool Player::IsHitting() const
 {
     SetColor( 11, 0);
-    cout << p_name << ", do you want a hit? (Y/N): ";
+    cout << " Player " << p_name << ", do you want a hit? (Y/N): ";
     char response;
     cin >> response;
+    SetColor( 9, 0);
     return (response == 'y' || response == 'Y');
 }
 void Player::Win() const
 {SetColor( 13, 0);
-cout << p_name << " wins.\n";
+cout << " Player " << p_name << " wins.\n";
 }
 void Player::Lose() const
 {SetColor( 4, 0);
-cout << p_name << " loses.\n";
+cout << " Player " << p_name << " loses.\n";
 }
 void Player::Push() const
 {SetColor( 12, 0);
-cout << p_name << " pushes.\n";
+cout << " Player " << p_name << " pushes.\n";
 }
 
 //============================================================================================================
@@ -220,7 +221,8 @@ const string RANKS[] = { "0", "A", "2", "3", "4", "5", "6", "7", "8", "9","10", 
 const string SUITS[] = { "Diamonds", "Hearts", "Clubs", "Spades" };
     if ( aCard.c_isFaceUp )
     {
-        os << RANKS[static_cast <int>(aCard.c_value)] << " "<< SUITS[static_cast <int> (aCard.c_suit)]<< " ";
+        os << "|" << RANKS[static_cast <int>(aCard.c_value)] << " "
+        << SUITS[static_cast <int> (aCard.c_suit)]<< "|";
     }
     else {os << " XX ";}
 return os;
@@ -228,14 +230,14 @@ return os;
 //============================================================================================================
 ostream& operator<<(ostream& os, const GenericPlayer& aGenericPlayer)
 {
-    os << " " << aGenericPlayer.p_name << ":\t";
+    os << "Player " << aGenericPlayer.p_name << ":   ";
     vector<Card*>::const_iterator pCard;
     if (!aGenericPlayer.m_Cards.empty())
     {
         for (pCard = aGenericPlayer.m_Cards.begin();
         pCard != aGenericPlayer.m_Cards.end(); ++pCard)
         {
-            os << *(*pCard) << "\t";
+            os << *(*pCard) << "   ";
         }
         if (aGenericPlayer.GetTotal() != 0)
         {
@@ -455,9 +457,21 @@ void Game::Play()
 int main()
 {
 //============================================================================================================
+SetColor( 8, 0);
 system("cls");
-SetColor( 1, 7);
-cout << "                                 The Blackjack game                             " << endll;
+    cout << endl;
+    cout << endl;
+    SetColor( 13, 0);
+    cout << "                ---====<<";
+    SetColor( 12, 0);
+    cout << "The Blackjack game is begin!";
+    SetColor( 13, 0);
+    cout << " >>===---";
+    cout << endl;
+    SetColor( 14, 0);
+    cout << "    ======================================================================" ;
+    cout << endll;
+SetColor( 8, 0);
 string playerNum;
 int iNum;
 char answ;
@@ -466,19 +480,39 @@ do
 {
 SetColor( 8, 0);
 system("cls");
-SetColor( 1, 7);
-cout << "                                 The Blackjack game                             " << endll;
+    cout << endl;
+    cout << endl;
+    SetColor( 13, 0);
+    cout << "                ---====<<";
+    SetColor( 12, 0);
+    cout << "The Blackjack game is begin!";
+    SetColor( 13, 0);
+    cout << " >>===---";
+    cout << endl;
+    SetColor( 14, 0);
+    cout << "    ======================================================================" ;
+    cout << endll;
 SetColor( 8, 0);
 
     do
     {
         cout << "Enter the number of players (1-7): " ;
         cin >> playerNum ;
-        SetColor( 8, 0);
-        system("cls");
-        SetColor( 1, 7);
-        cout << "                                 The Blackjack game                             " << endll;
-        SetColor( 8, 0);
+SetColor( 8, 0);
+system("cls");
+    cout << endl;
+    cout << endl;
+    SetColor( 13, 0);
+    cout << "                ---====<<";
+    SetColor( 12, 0);
+    cout << "The Blackjack game is begin!";
+    SetColor( 13, 0);
+    cout << " >>===---";
+    cout << endl;
+    SetColor( 14, 0);
+    cout << "    ======================================================================" ;
+    cout << endll;
+SetColor( 8, 0);
         if (IsInteger(playerNum) == false)
         {
             cerr << "Oops, you entered an invalid integer!" << endl;
@@ -505,9 +539,21 @@ SetColor( 8, 0);
         names.push_back(name);
     }
     cout << endl;
-    system("cls");
-    SetColor( 1, 7);
-    cout << "                                 The Blackjack game                             " << endll;
+SetColor( 8, 0);
+system("cls");
+    cout << endl;
+    cout << endl;
+    SetColor( 13, 0);
+    cout << "                ---====<<";
+    SetColor( 12, 0);
+    cout << "The Blackjack game is begin!";
+    SetColor( 13, 0);
+    cout << " >>===---";
+    cout << endl;
+    SetColor( 14, 0);
+    cout << "    ======================================================================" ;
+    cout << endll;
+SetColor( 8, 0);
     SetColor( 9, 0);
     Game aGame(names);
     aGame.Play();
