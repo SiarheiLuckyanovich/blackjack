@@ -7,10 +7,13 @@
 
 using namespace std;
 //============================================================================================================
-bool IsInteger (int number)
+bool IsInteger (string number)
 {
-    if (isdigit(number) == false) { return false; }
-    else return true;
+    for (size_t i = 0; i < number.length(); ++i)
+    {
+        if (isdigit(number[i]) == false) { return false; }
+    }
+    return true;
 }
 //============================================================================================================
 void SetColor(int text, int background)
@@ -455,7 +458,8 @@ int main()
 system("cls");
 SetColor( 1, 7);
 cout << "                                 The Blackjack game                             " << endll;
-int playerNum = 0;
+string playerNum;
+int iNum;
 char answ;
 
 do
@@ -466,24 +470,34 @@ SetColor( 1, 7);
 cout << "                                 The Blackjack game                             " << endll;
 SetColor( 8, 0);
 
-do
-{
-    cout << "Enter the number of players (1-7): " ;
-    cin >> playerNum ;
+    do
+    {
+        cout << "Enter the number of players (1-7): " ;
+        cin >> playerNum ;
+        SetColor( 8, 0);
+        system("cls");
+        SetColor( 1, 7);
+        cout << "                                 The Blackjack game                             " << endll;
+        SetColor( 8, 0);
+        if (IsInteger(playerNum) == false)
+        {
+            cerr << "Oops, you entered an invalid integer!" << endl;
+        }
+        else if ( (iNum = stoi(playerNum)) <= 0 || iNum > 7 )
+        {
+            cerr << "Oops, you entered an invalid number!" << endl;
+        }
+        else if ( iNum  < 2)
+        {
+            cout << "The game for " << iNum << " player." << endl;
+        }
+        else { cout << "The game for " << iNum << " players." << endl; }
+    } while (IsInteger(playerNum) == false || iNum <= 0 || iNum > 7);
 
-    if ( playerNum <= 0 || playerNum > 7 )
-    {
-        cerr << "Oops, you entered an invalid number!" << endl;
-    }
-    else if ( playerNum  < 2)
-    {
-        cout << "The game for " << playerNum << " player." << endl;
-    }
-    else { cout << "The game for " << playerNum << " players." << endl; }
-} while ( playerNum <= 0 || playerNum > 7 );
+    int iNum = stoi(playerNum);
     vector<string> names;
     string name;
-    for (int i = 0; i < playerNum ; ++i)
+    for (int i = 0; i < iNum ; ++i)
     {
         SetColor( 7, 0);
         cout << "Enter player name: ";
